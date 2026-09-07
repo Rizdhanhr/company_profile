@@ -1,0 +1,6 @@
+/public/uploads/*
+!/public/uploads/
+/logs/cron/*
+!/logs/cron/
+/logs/web/*
+!/logs/web/

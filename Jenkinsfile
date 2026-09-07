@@ -25,7 +25,5 @@ pipeline {
         //         // sh 'cp .env.dev .env && composer install'
         //     }
         // }
-
-       
     }
 }
