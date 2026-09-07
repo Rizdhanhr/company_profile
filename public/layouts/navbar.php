@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="index.php#home">
             <i class="bi bi-terminal-box text-success me-2 fs-3"></i>
-            <span>Belajar Ngoding</span>
+            <span>Belajar Ngoding Rizdhan</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
