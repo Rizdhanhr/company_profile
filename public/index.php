@@ -1,14 +1,16 @@
 <?php
+require_once __DIR__ . '/../functions.php';
 
 // 1. Tentukan judul halaman (Sama seperti @section('title', '...'))
 $title = "Home - Belajar Programming Dasar";
+
 
 // 2. Mulai menangkap konten halaman (Sama seperti @section('content'))
 // require_once __DIR__ . '/../functions.php';
 
 // 2. Langsung panggil write_log dengan pesan bebas buatanmu sendiri
-// $ip = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
-// write_log("Visitor dengan IP $ip membuka halaman index", "web");
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
+write_log("Visitor dengan IP  membuka halaman index", "web");
 ob_start();
 ?>
 

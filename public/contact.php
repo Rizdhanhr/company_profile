@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $nama_file_baru = uniqid('bukti_', true) . '.' . $ekstensi_file;
                 
                 // Tentukan direktori penyimpanan (public/images)
-                $direktori_tujuan = __DIR__ . '/images/';
+                $direktori_tujuan = __DIR__ . '/uploads/';
 
                 // Jika folder belum ada, buat foldernya secara otomatis
                 if (!is_dir($direktori_tujuan)) {
@@ -146,7 +146,7 @@ ob_start();
                     <!-- Tampilkan Pesan Status / Error Asli -->
                     <?= $pesan_status; ?>
 
-                    <!-- <form action="" method="POST" enctype="multipart/form-data"> -->
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -185,10 +185,10 @@ ob_start();
                             <div class="form-text text-secondary small">Format: JPG, JPEG, PNG, WEBP. Maksimal ukuran 2MB.</div>
                         </div>
 
-                        <!-- <button type="submit" class="btn btn-success px-4 py-2.5 rounded-3 mt-2 fw-semibold d-inline-flex align-items-center">
+                        <button type="submit" class="btn btn-success px-4 py-2.5 rounded-3 mt-2 fw-semibold d-inline-flex align-items-center">
                             <i class="bi bi-send-fill me-2"></i> Kirim Pesan Sekarang
-                        </button> -->
-                    <!-- </form> -->
+                        </button>
+                    </form>
                 </div>
             </div>
 
