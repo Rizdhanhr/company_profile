@@ -20,9 +20,11 @@ pipeline {
                     string(credentialsId: 'prod-server-path', variable: 'DEPLOY_PATH')
                 ]) {
                     sh """
-                        echo "Testing Connection"
-                        rclone lsd ":sftp,host=\$SERVER_IP,user=\$SSH_USER,pass=\$SSH_PASS,md5sum_command=none:\$DEPLOY_PATH"
-                        echo "Connection Success"
+                        rclone sync ./ ":sftp,host=\$SERVER_IP,user=\$SSH_USER,pass=\$SSH_PASS,md5sum_command=none:\$DEPLOY_PATH" \
+                            --exclude-from='.rcloneignore' \
+                            --sftp-set-modtime=false \
+                            --dry-run \
+                            -v
                     """
                 }
             }
