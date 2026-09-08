@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../functions.php';
 // 1. Tentukan judul halaman spesifik untuk Contact
 $title = "Contact Us - Belajar Programming Dasar";
 
@@ -63,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Jika folder aman, lanjutkan pindahkan file
                 if (empty($pesan_status)) {
                     if (move_uploaded_file($gambar_tmp, $direktori_tujuan . $nama_file_baru)) {
+                        write_log("Sukses", "web");    
                         $pesan_status = '<div class="alert alert-success small mb-4"><strong>Berhasil:</strong> Pesan dan gambar lampiran berhasil dikirim!</div>';
                         // Lanjutkan simpan data ke database jika diperlukan di sini...
                     } else {
