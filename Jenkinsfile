@@ -23,7 +23,6 @@ pipeline {
                         rclone sync ./ ":sftp,host=\$SERVER_IP,user=\$SSH_USER,pass=\$SSH_PASS,md5sum_command=none:\$DEPLOY_PATH" \
                             --exclude-from='.rcloneignore' \
                             --sftp-set-modtime=false \
-                            --dry-run \
                             -v
                     """
                 }
