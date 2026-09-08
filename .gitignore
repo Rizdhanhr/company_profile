@@ -1,11 +1,5 @@
 /public/uploads/*
 !/public/uploads/
-!/public/uploads/.gitkeep
 
-/logs/cron/*
-!/logs/cron/
-!/logs/cron/.gitkeep
-
-/logs/web/*
-!/logs/web/
-!/logs/web/.gitkeep
+/logs/*
+!/logs/
