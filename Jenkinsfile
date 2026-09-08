@@ -16,7 +16,7 @@ pipeline {
                     // sshUserPrivateKey(credentialsId: 'prod-server-ssh', keyFileVariable: 'SSH_KEY'),
                     string(credentialsId: 'prod-server-ip', variable: 'SERVER_IP'),
                     string(credentialsId: 'prod-server-user', variable: 'SSH_USER'),
-                    string(credentialsId: 'prod-server-pass-obscured', variable: 'SSH_PASS')
+                    string(credentialsId: 'prod-server-pass-obscured', variable: 'SSH_PASS'),
                     string(credentialsId: 'prod-server-path', variable: 'DEPLOY_PATH')
                 ]) {
                     sh """
