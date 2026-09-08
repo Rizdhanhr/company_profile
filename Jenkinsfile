@@ -20,8 +20,7 @@ pipeline {
                 ]) {
                     sh """
                         rsync -avz --delete \
-                            --exclude='.git' \
-                            --exclude='.env' \
+                            --exclude-from='.rsyncignore' \
                             -e "ssh -i \$SSH_KEY -o StrictHostKeyChecking=no" \
                             ./ \$SSH_USER@\$SERVER_IP:\$DEPLOY_PATH/
                     """
