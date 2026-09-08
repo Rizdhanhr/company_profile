@@ -6,27 +6,48 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Deploy Production') {
+         stage('Deploy Production') {
             when {
                 branch 'main'
             }
             steps {
                 echo "Pushing To Production"
                 withCredentials([
-                    sshUserPrivateKey(credentialsId: 'prod-server-ssh', keyFileVariable: 'SSH_KEY'),
+                    // sshUserPrivateKey(credentialsId: 'prod-server-ssh', keyFileVariable: 'SSH_KEY'),
                     string(credentialsId: 'prod-server-ip', variable: 'SERVER_IP'),
                     string(credentialsId: 'prod-server-user', variable: 'SSH_USER'),
+                    string(credentialsId: 'prod-server-pass-obscured', variable: 'SSH_PASS')
                     string(credentialsId: 'prod-server-path', variable: 'DEPLOY_PATH')
                 ]) {
                     sh """
-                        rsync -avz --delete \
-                            --exclude-from='.rsyncignore' \
-                            -e "ssh -i \$SSH_KEY -o StrictHostKeyChecking=no" \
-                            ./ \$SSH_USER@\$SERVER_IP:\$DEPLOY_PATH/
+                        echo "Testing Connection"
+                        rclone lsd ":sftp,host=\$SERVER_IP,user=\$SSH_USER,pass=\$SSH_PASS,md5sum_command=none:\$DEPLOY_PATH"
+                        echo "Connection Success"
                     """
                 }
             }
         }
+        // stage('Deploy Production') {
+        //     when {
+        //         branch 'main'
+        //     }
+        //     steps {
+        //         echo "Pushing To Production"
+        //         withCredentials([
+        //             sshUserPrivateKey(credentialsId: 'prod-server-ssh', keyFileVariable: 'SSH_KEY'),
+        //             string(credentialsId: 'prod-server-ip', variable: 'SERVER_IP'),
+        //             string(credentialsId: 'prod-server-user', variable: 'SSH_USER'),
+        //             string(credentialsId: 'prod-server-path', variable: 'DEPLOY_PATH')
+        //         ]) {
+        //             sh """
+        //                 rsync -avz --delete \
+        //                     --exclude-from='.rsyncignore' \
+        //                     -e "ssh -i \$SSH_KEY -o StrictHostKeyChecking=no" \
+        //                     ./ \$SSH_USER@\$SERVER_IP:\$DEPLOY_PATH/
+        //             """
+        //         }
+        //     }
+        // }
         // stage('Build & Deploy Dev') {
         //     when {
         //         branch 'dev'
