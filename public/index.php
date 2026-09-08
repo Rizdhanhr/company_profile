@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../functions.php';
 
 // 1. Tentukan judul halaman (Sama seperti @section('title', '...'))
-$title = "Home - Belajar Programming Dasar";
+$title = "Home - Belajar Programming Dasar Rizdhan";
 
 
 // 2. Mulai menangkap konten halaman (Sama seperti @section('content'))

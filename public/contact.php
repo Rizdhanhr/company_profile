@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../functions.php';
 // 1. Tentukan judul halaman spesifik untuk Contact
-$title = "Contact Us - Belajar Programming Dasar";
+$title = "Contact Us - Belajar Programming Dasar Rizdhan";
 
 // Inisialisasi variabel pesan notifikasi / error
 $pesan_status = "";
