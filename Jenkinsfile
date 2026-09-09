@@ -6,7 +6,7 @@ pipeline {
                 checkout scm
             }
         }
-         stage('Deploy Production') {
+        stage('Deploy Production') {
             when {
                 branch 'main'
             }
@@ -20,14 +20,37 @@ pipeline {
                     string(credentialsId: 'prod-server-path', variable: 'DEPLOY_PATH')
                 ]) {
                     sh """
+                        git ls-files > filelist.txt
                         rclone sync ./ ":sftp,host=\$SERVER_IP,user=\$SSH_USER,pass=\$SSH_PASS,md5sum_command=none:\$DEPLOY_PATH" \
-                            --exclude-from='.rcloneignore' \
+                            --files-from filelist.txt \
                             --sftp-set-modtime=false \
                             -v
                     """
                 }
             }
         }
+        // stage('Deploy Production') {
+        //     when {
+        //         branch 'main'
+        //     }
+        //     steps {
+        //         echo "Pushing To Production"
+        //         withCredentials([
+        //             // sshUserPrivateKey(credentialsId: 'prod-server-ssh', keyFileVariable: 'SSH_KEY'),
+        //             string(credentialsId: 'prod-server-ip', variable: 'SERVER_IP'),
+        //             string(credentialsId: 'prod-server-user', variable: 'SSH_USER'),
+        //             string(credentialsId: 'prod-server-pass-obscured', variable: 'SSH_PASS'),
+        //             string(credentialsId: 'prod-server-path', variable: 'DEPLOY_PATH')
+        //         ]) {
+        //             sh """
+        //                 rclone sync ./ ":sftp,host=\$SERVER_IP,user=\$SSH_USER,pass=\$SSH_PASS,md5sum_command=none:\$DEPLOY_PATH" \
+        //                     --exclude-from='.rcloneignore' \
+        //                     --sftp-set-modtime=false \
+        //                     -v
+        //             """
+        //         }
+        //     }
+        // }
         // stage('Deploy Production') {
         //     when {
         //         branch 'main'
